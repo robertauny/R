@@ -49,11 +49,11 @@ atlas.ml.functions.model.mlp        <- function(units=NULL,rows=NULL,cols=NULL,c
         # number of clusters in the output layer
         if( clusters < units ) {
             clst  <- units - clusters
-            mod  %>% layer_dense(units=cols,input_shape=list(rows/units,cols),activation="relu"   ) %>%
-                     layer_dropout(rate=0.5*clst)                                                   %>%
-                     layer_dense(units=(units-0.5*clst)                      ,activation="relu"   ) %>%
-                     layer_dropout(rate=0.5*clst)                                                   %>%
-                     layer_dense(units=clusters                              ,activation="softmax") %>%
+            mod  %>% layer_dense(units=units,input_shape=list(rows/units,cols),activation="relu"   ) %>%
+                     layer_dropout(rate=0.5*clst)                                                    %>%
+                     layer_dense(units=(units-0.5*clst)                       ,activation="relu"   ) %>%
+                     layer_dropout(rate=0.5*clst)                                                    %>%
+                     layer_dense(units=clusters                               ,activation="softmax") %>%
             # prepare the model for training
             mod  %>% compile(loss="categorical_crossentropy"
                             ,optimizer="adadelta"
