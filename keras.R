@@ -51,7 +51,7 @@ atlas.ml.functions.model.mlp        <- function(units=NULL,rows=NULL,cols=NULL,c
             clst  <- units - clusters
             mod  %>% layer_dense(units=cols,input_shape=list(rows/units,cols),activation="relu"   ) %>%
                      layer_dropout(rate=0.5*clst)                                                   %>%
-                     layer_dense(units=(clusters-0.5*clst)                   ,activation="relu"   ) %>%
+                     layer_dense(units=(units-0.5*clst)                      ,activation="relu"   ) %>%
                      layer_dropout(rate=0.5*clst)                                                   %>%
                      layer_dense(units=clusters                              ,activation="softmax") %>%
             # prepare the model for training
